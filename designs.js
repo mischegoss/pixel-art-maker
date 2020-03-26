@@ -1,6 +1,6 @@
 // Select color input
 
-const colorPicker = document.getElementById('colorPicker')
+const colorPicker = document.getElementById('colorPicker');
 
 // Select size input
 
@@ -23,27 +23,23 @@ document.getElementById('sizePicker').addEventListener('submit', function() {
     makeGrid(selectedWidth, selectedHeight);
 //Calls function to add coloring 
     addColorPickertoBoxes();
-  })
+  });
 
 
 
 function makeGrid(height, width) {
-  //By default, I want the grid to be empty 
+  //Starts grid off as empty 
         let grid = '';
-
         for (let i = 0; i < height; i++) {
             grid += '<tr class="row-' + i + '">';
             // loop for each box and add class to target to create coloring
             for (let j = 0; j < width; j++) {
                 grid += '<td class="colorBox"></td>';
             }
-            grid += '</tr>'   
-      
-    canvas.innerHTML = grid;
+            grid += '</tr>'      
+    canvas.innerHTML = grid;  
+        }};     
     
-        }
-        
-    }
 
     function addColorPickertoBoxes() {
     //Grabs all the created boxes 
@@ -52,14 +48,13 @@ function makeGrid(height, width) {
         colorBoxes[i].addEventListener("click", function (event) {
             let selectedBox = event.target;
             selectedBox.style.backgroundColor = colorPicker.value;
-        });
-    }
-    }
+        })}};
+    
 
 function startGame() {
 makeGrid(15,15)
 addColorPickertoBoxes()
-}
+};
 
 startGame();
 
