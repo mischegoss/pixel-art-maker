@@ -13,42 +13,55 @@ const canvas = document.getElementById('pixelCanvas');
 
 // When size is submitted by the user, call makeGrid()
 
-
-document.getElementById('sizePicker').addEventListener('submit', function() {
-    // prevent page refresh on submit
+//Add event listener on submit 
+document.getElementById('sizePicker').addEventListener('submit', function() {   
     event.preventDefault();
-
-    // get input data and draw grid
+//Grabs the value of width and height
     let selectedWidth = document.getElementById('inputWidth').value;
     let selectedHeight = document.getElementById('inputHeight').value;
+//Calls makeGrid() to create grid
     makeGrid(selectedWidth, selectedHeight);
+//Calls function to add coloring 
+    addColorPickertoBoxes();
   })
 
 
-    function makeGrid(height, width) {
-      
+
+function makeGrid(height, width) {
+  //By default, I want the grid to be empty 
         let grid = '';
-    
-        // loop over each row
+
         for (let i = 0; i < height; i++) {
             grid += '<tr class="row-' + i + '">';
-            // loop for each cell
+            // loop for each box and add class to target to create coloring
             for (let j = 0; j < width; j++) {
-                grid += '<td class="cell" id="row-' + i + '_cell-' + j + '"></td>';
+                grid += '<td class="colorBox"></td>';
             }
-            grid += '</tr>';
-        }
-        // add grid into table element
-        canvas.innerHTML = grid;
+            grid += '</tr>'   
+      
+    canvas.innerHTML = grid;
     
-        // Add click event to grid cells once the table grid has been created
-        //addClickEventToCells();
+        }
+        
     }
 
+    function addColorPickertoBoxes() {
+    //Grabs all the created boxes 
+    const colorBoxes = document.getElementsByClassName('colorBox');
+    for (let i = 0; i < colorBoxes.length; i++) {
+        colorBoxes[i].addEventListener("click", function (event) {
+            let selectedBox = event.target;
+            selectedBox.style.backgroundColor = colorPicker.value;
+        });
+    }
+    }
 
-
+function startGame() {
 makeGrid(15,15)
+addColorPickertoBoxes()
+}
 
+startGame();
 
 
 
